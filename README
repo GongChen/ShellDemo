@@ -1,0 +1,69 @@
+简介 
+version 1.0
+1.安装 jar文件夹下的remotecontrol.jar 和 remotecontrol.sh到android的 /data/local/ 目录下。
+	app push .../jar/remotecontrol.jar /data/local/remotecontrol.jar
+	app push .../jar/remotecontrol.sh  /data/local/remotecontrol.sh
+2.执行remotecontrol.sh 
+	/data/local/remotecontrol.sh
+
+  可以附带端口号，比如指定6666端口：/data/local/remotecontrol.sh 6666
+  如果不附带端口号，那就采用默认端口号 6000
+3.apk是测试demo，模拟发送事件到jar，然后由jar包来生成对应的事件。
+
+
+使用说明：
+	采用Json来传递数据，请封装成指定的格式。
+	可以参考如下的方式来封装Json Command。（见 ShellDemoActivity.java）
+1.按键事件：
+	public String sendKeyActionEvent(int keycode)
+
+	keycode = android.view.KeyEvent.KEYCODE_HOME|android.view.KeyEvent.KEYCODE_BACK|...
+
+2.滑动事件：
+	public String sendMoveActionEvent(float x, float y, float x2, float y2)
+
+	x ,y : 初始点的坐标
+	x2,y2: 终点的坐标
+
+3.点击事件：
+	public String sendTouchActionEvent(float x, float y)
+
+	x ,y : 初始点的坐标
+
+4.长按事件：
+	public String sendTouchPressActionEvent(float x, float y, int millsecond)
+
+	x ,y : 初始点的坐标
+	millsecond:长按时间（毫秒）
+
+5.按键长按事件：
+	public String sendKeyPressActionEvent(int keycode, int millsecond)
+
+	keycode = android.view.KeyEvent.KEYCODE_HOME|android.view.KeyEvent.KEYCODE_BACK|...
+	millsecond:长按时间（毫秒）
+
+生成的Json Command （String 类型）请放到List里后，统一发送。
+
+
+For example:
+	String command1 = sendKeyActionEvent(KeyEvent.KEYCODE_HOME); //创建一个Home按键的事件
+	String command2 = sendMoveActionEvent(100,100,200,200); //创建一个滑动事件，从坐标（100,100）划动到（200，200）
+
+	List<String> commands = new ArrayList<String>(); //生成List
+	commands.add(command1);
+	commands.add(command2);
+	sendEvent(commands); //发送
+
+
+version 1.1
+添加Controller.java工具类，用于生成command，和发送事件。
+
+
+
+
+
+有任何疑问请直接与我联系。
+
+Thanks.
+GongChen
+

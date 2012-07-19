@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">按键模拟控制 测试</string>
+    <string name="app_name">ShellDemo</string>
+    <string name="left_arrow">《=====</string>
+	<string name="right_arrow">=====》</string>
+	<string name="hint">请输入文字，文字会自动模拟输出到下一行。</string>
+	<string name="hint2">接收来自上一行的文字。</string>
+	<string name="click">点击”Go“按钮，5秒后自动触发点击下面的”按我“按钮</string>
+	<string name="go">Go</string>
+	<string name="click_me">按我</string>
+</resources>
